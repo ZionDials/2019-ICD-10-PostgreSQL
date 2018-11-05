@@ -1,0 +1,26 @@
+CREATE DATABASE "2019ICD10" WITH OWNER "postgres";
+
+CREATE TABLE IF NOT EXISTS "ICD10Code"
+(
+  "ICD10Code"   VARCHAR(7)    NOT NULL,
+  "Description" VARCHAR(3000) NOT NULL,
+  CONSTRAINT "ICD10Code_pkey" PRIMARY KEY ("ICD10Code")
+);
+
+ALTER TABLE "ICD10Code" OWNER TO "postgres";
+
+CREATE UNIQUE INDEX IF NOT EXISTS "ICD10Code_ICD10Code_uindex" ON "ICD10Code" ("ICD10Code");
+
+CREATE TABLE IF NOT EXISTS "ICD10Order"
+(
+  "ICD10Order"        VARCHAR(5)    NOT NULL,
+  "ICD10Code"         VARCHAR(7)    NOT NULL,
+  "Header"            INTEGER       NOT NULL,
+  "Short_Description" VARCHAR(60)   NOT NULL,
+  "Long_Description"  VARCHAR(3000) NOT NULL,
+  CONSTRAINT "ICD10Order_pk" PRIMARY KEY ("ICD10Order")
+);
+
+ALTER TABLE "ICD10Order" OWNER TO "postgres";
+
+CREATE UNIQUE INDEX IF NOT EXISTS "ICD10Order_ICD10Order_uindex" ON "ICD10Order" ("ICD10Order");
